@@ -1,585 +1,315 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Colegio de Cervantes | Ciclo 2026–2027</title>
 
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  :root{
-    --primary:#8B0000;
-    --gold:#f1c232;
-    --dark:#2f3b46;
-    --shadow:rgba(0,0,0,.18);
-    --paper:#ffffff;
-    --soft:#f7f3e6;
-  }
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
 
-  body{
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background: linear-gradient(135deg,#8fd3f4,#eaf6ff,#f3e7a6);
-    min-height:100vh;
-  }
+body{
+  background: linear-gradient(180deg,#cfeeff,#f4f1d8);
+  color:#222;
+}
 
-  .container{
-    max-width:1200px;
-    margin:auto;
-    padding:20px;
-  }
+/* ===== HEADER ===== */
+header{
+  text-align:center;
+  padding:40px 20px 30px;
+}
 
-  /* ===== HEADER ===== */
-  .header{
-    text-align:center;
-    margin-bottom:18px;
-  }
+header .logos{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  margin-bottom:14px;
+}
 
-  .logo-icon{
-    width:130px;
-    height:130px;
-    margin:0 auto 10px;
-    border-radius:50%;
-    background:#fff;
-    box-shadow:0 15px 35px rgba(0,0,0,.2);
-    display:flex;
-    flex-direction:column;
-    padding:10px;
-    gap:6px;
-    overflow:hidden;
-  }
-  .logo-icon img{
-    width:100%;
-    height:50%;
-    object-fit:contain;
-    display:block;
-  }
+header .logos img{
+  height:80px;
+}
 
-  .school-name{
-    font-family: Georgia, serif;
-    font-size:2.4rem;
-    font-weight:900;
-    color:var(--primary);
-    margin-top:4px;
-    letter-spacing:.5px;
-  }
+h1{
+  color:#8b0000;
+  font-size:48px;
+  font-weight:900;
+  margin-bottom:10px;
+}
 
-  .school-year{
-    display:inline-block;
-    margin-top:8px;
-    padding:10px 22px;
-    border-radius:40px;
-    background:var(--gold);
-    font-weight:900;
-    box-shadow:0 10px 20px rgba(241,194,50,.35);
-  }
+.badge{
+  display:inline-block;
+  background:#f2c230;
+  padding:10px 22px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:18px;
+}
 
-  /* ===== THUMBNAILS STRIP ===== */
-  .flyers-strip{
-    background:rgba(255,255,255,.72);
-    padding:14px;
-    border-radius:20px;
-    box-shadow:0 15px 35px rgba(0,0,0,.12);
-  }
+/* ===== CAROUSEL ===== */
+.carousel{
+  max-width:1300px;
+  margin:30px auto;
+  overflow:hidden;
+}
 
-  .thumbs{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-    gap:10px;
-  }
+.carousel-track{
+  display:flex;
+  gap:18px;
+  animation: slide 18s infinite linear;
+}
 
-  .thumb{
-    border-radius:14px;
-    overflow:hidden;
-    cursor:pointer;
-    border:2px solid transparent;
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
-    transition:.22s ease;
-    background:#fff;
-  }
-  .thumb:hover{transform:translateY(-2px)}
-  .thumb.active{border-color:var(--primary)}
+.carousel-item{
+  min-width:240px;
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 10px 24px rgba(0,0,0,.15);
+  text-align:center;
+}
 
-  .thumb img{
-    width:100%;
-    height:150px;
-    object-fit:cover;
-    display:block;
-    background:#f2f2f2;
-  }
-  .thumb span{
-    display:block;
-    text-align:center;
-    font-weight:900;
-    padding:7px 6px;
-    background:#0000009a;
-    color:#fff;
-    letter-spacing:.3px;
-  }
+.carousel-item img{
+  width:100%;
+  display:block;
+}
 
-  /* ===== MAIN LAYOUT ===== */
-  .main{
-    display:grid;
-    grid-template-columns:1.08fr .92fr;
-    gap:18px;
-    margin-top:18px;
-  }
-  @media(max-width:900px){
-    .main{grid-template-columns:1fr}
-  }
+.carousel-item span{
+  display:block;
+  padding:10px;
+  font-weight:900;
+  background:#666;
+  color:#fff;
+}
 
-  /* ===== VIEWER ===== */
-  .viewer{
-    background:#fff;
-    border-radius:20px;
-    box-shadow:0 20px 45px var(--shadow);
-    overflow:hidden;
-  }
-  .viewer-header{
-    background:var(--primary);
-    color:#fff;
-    padding:12px 14px;
-    font-weight:900;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-  }
-  .viewer-header small{
-    opacity:.9;
-    font-weight:800;
-  }
-  .viewer img{
-    width:100%;
-    height:72vh;
-    object-fit:contain;
-    background:#f2f2f2;
-    display:block;
-  }
-  @media(max-width:900px){
-    .viewer img{height:58vh}
-  }
+@keyframes slide{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
 
-  /* ===== RIGHT PANEL ===== */
-  .paper{
-    background:var(--paper);
-    border-radius:20px;
-    padding:18px;
-    box-shadow:0 20px 45px var(--shadow);
-  }
+/* ===== MAIN GRID ===== */
+.main{
+  max-width:1300px;
+  margin:30px auto 60px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:26px;
+  padding:0 20px;
+}
 
-  .panel-title{
-    text-align:center;
-    font-family: Georgia, serif;
-    color:var(--primary);
-    font-weight:900;
-    font-size:2.2rem;
-    letter-spacing:.4px;
-  }
+/* ===== LEFT BLANK (TOUR) ===== */
+.tourBox{
+  background:#fff;
+  border-radius:26px;
+  padding:40px 30px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  box-shadow:0 16px 40px rgba(0,0,0,.15);
+}
 
-  .tape{
-    display:block;
-    margin:10px auto 10px;
-    padding:10px 18px;
-    background:var(--gold);
-    width:max-content;
-    border-radius:14px;
-    font-weight:900;
-    box-shadow:0 10px 18px rgba(241,194,50,.35);
-  }
+.tourIcon{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:36px;
+  background:#f4f4f4;
+  margin-bottom:16px;
+}
 
-  .subline{
-    text-align:center;
-    font-weight:900;
-    color:#666;
-    margin:4px 0 12px;
-  }
+.tourBox h2{
+  color:#8b0000;
+  font-size:32px;
+  margin-bottom:10px;
+}
 
-  .grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
-    margin-top:8px;
-  }
-  @media(max-width:520px){
-    .grid{grid-template-columns:1fr}
-  }
+.tourBox p{
+  font-size:18px;
+  max-width:420px;
+  margin-bottom:20px;
+}
 
-  .box{
-    background:var(--soft);
-    border-radius:16px;
-    padding:14px;
-    box-shadow:0 10px 18px rgba(0,0,0,.08);
-  }
-  .box h3{
-    color:var(--primary);
-    margin-bottom:10px;
-    font-weight:900;
-    letter-spacing:.2px;
-  }
+.tourBtn{
+  background:linear-gradient(180deg,#25D366,#18b957);
+  color:#fff;
+  padding:14px 26px;
+  border-radius:999px;
+  font-weight:900;
+  text-decoration:none;
+  box-shadow:0 10px 24px rgba(0,0,0,.25);
+}
 
-  .req{
-    list-style:none;
-  }
-  .req li{
-    padding-left:28px;
-    position:relative;
-    margin-bottom:9px;
-    font-weight:900;
-    color:#1b1b1b;
-  }
-  .req li::before{
-    content:"✓";
-    position:absolute;
-    left:0;
-    top:1px;
-    width:20px;height:20px;
-    border-radius:50%;
-    background:var(--gold);
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:.85rem;
-  }
+.tourBtn:hover{transform:translateY(-2px)}
 
-  .price{
-    background:var(--primary);
-    color:#fff;
-    padding:14px;
-    border-radius:14px;
-    text-align:center;
-    font-weight:1000;
-    box-shadow:0 12px 22px rgba(139,0,0,.25);
-    margin-bottom:10px;
-  }
-  .price.dark{
-    background:var(--dark);
-    box-shadow:0 12px 22px rgba(47,59,70,.25);
-  }
-  .price .label{
-    font-size:.9rem;
-    opacity:.92;
-    letter-spacing:.7px;
-    text-transform:uppercase;
-    font-weight:900;
-  }
-  .price .amount{
-    font-size:1.7rem;
-    margin-top:4px;
-  }
+/* ===== INFO CARD ===== */
+.card{
+  background:#fff;
+  border-radius:26px;
+  padding:28px;
+  box-shadow:0 16px 40px rgba(0,0,0,.15);
+}
 
-  .schedule{
-    background:#fff;
-    border:2px solid var(--gold);
-    padding:12px;
-    border-radius:14px;
-    text-align:center;
-    font-weight:1000;
-    box-shadow:0 10px 18px rgba(0,0,0,.08);
-  }
+.card h2{
+  color:#8b0000;
+  font-size:38px;
+  margin-bottom:12px;
+}
 
-  /* ===== CONTACT + LOCATION ===== */
-  .contact{
-    margin-top:14px;
-    background:linear-gradient(135deg,#8B0000,#5c0000);
-    color:#fff;
-    padding:16px;
-    border-radius:18px;
-    text-align:center;
-    box-shadow:0 15px 35px rgba(0,0,0,.2);
-  }
-  .contact h3{
-    margin-bottom:10px;
-    font-weight:1000;
-    letter-spacing:.3px;
-  }
-  .btn-wa{
-    display:inline-block;
-    background:#25D366;
-    color:#fff;
-    padding:12px 26px;
-    border-radius:30px;
-    font-weight:1000;
-    text-decoration:none;
-    box-shadow:0 12px 25px rgba(37,211,102,.38);
-    transition:.2s ease;
-  }
-  .btn-wa:hover{transform:translateY(-2px); background:#128C7E}
+.card .badge{
+  margin-bottom:14px;
+}
 
-  .phones{
-    margin-top:12px;
-    font-weight:1000;
-    letter-spacing:.2px;
-  }
+.card ul{
+  margin-top:16px;
+  list-style:none;
+}
 
-  .location{
-    margin-top:12px;
-    background:#fff;
-    border-radius:16px;
-    padding:14px;
-    text-align:center;
-    box-shadow:0 12px 25px rgba(0,0,0,.14);
-    font-weight:950;
-    color:#1e1e1e;
-  }
-  .location small{
-    display:block;
-    margin-top:8px;
-    color:#666;
-    font-weight:900;
-  }
+.card ul li{
+  margin-bottom:10px;
+  font-size:17px;
+}
 
-  .footer{
-    text-align:center;
-    margin:18px 0 6px;
-    font-weight:800;
-    color:#333;
-  }
+.prices{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin:16px 0;
+}
+
+.price{
+  padding:14px;
+  border-radius:14px;
+  font-weight:900;
+  text-align:center;
+}
+
+.price.red{background:#8b0000;color:#fff}
+.price.dark{background:#333;color:#fff}
+
+.schedule{
+  border:2px solid #f2c230;
+  border-radius:14px;
+  padding:12px;
+  text-align:center;
+  font-weight:900;
+}
+
+/* ===== CONTACT ===== */
+.contact{
+  margin-top:22px;
+  background:#8b0000;
+  color:#fff;
+  padding:20px;
+  border-radius:18px;
+  text-align:center;
+}
+
+.contact a{
+  display:inline-block;
+  background:#25D366;
+  color:#fff;
+  padding:12px 24px;
+  border-radius:999px;
+  font-weight:900;
+  text-decoration:none;
+  margin-bottom:12px;
+}
+
+.address{
+  margin-top:18px;
+  background:#fff;
+  padding:16px;
+  border-radius:18px;
+  font-weight:900;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  h1{font-size:34px}
+  .main{grid-template-columns:1fr}
+}
 </style>
 </head>
 
 <body>
-<div class="container">
 
-  <header class="header">
-    <div class="logo-icon" aria-label="Logos Colegio de Cervantes">
-      <img src="cervantes.png" alt="Colegio de Cervantes">
-      <img src="cervantessecundaria.png" alt="Colegio de Cervantes (escudo)">
+<header>
+  <div class="logos">
+    <img src="cervantes.png" alt="Colegio de Cervantes">
+    <img src="cervantessecundaria.png" alt="Cervantes Secundaria">
+  </div>
+
+  <h1>COLEGIO DE CERVANTES</h1>
+  <div class="badge">CICLO ESCOLAR 2026–2027</div>
+</header>
+
+<section class="carousel">
+  <div class="carousel-track">
+    <div class="carousel-item"><img src="flyer_maternal.jpg"><span>MATERNAL</span></div>
+    <div class="carousel-item"><img src="flyer_preescolar.jpg"><span>PREESCOLAR</span></div>
+    <div class="carousel-item"><img src="flyer_primaria.jpg"><span>PRIMARIA</span></div>
+    <div class="carousel-item"><img src="flyer_secundaria.jpg"><span>SECUNDARIA</span></div>
+    <div class="carousel-item"><img src="flyer_preparatoria.jpg"><span>PREPARATORIA</span></div>
+
+    <!-- DUPLICADOS PARA LOOP -->
+    <div class="carousel-item"><img src="flyer_maternal.jpg"><span>MATERNAL</span></div>
+    <div class="carousel-item"><img src="flyer_preescolar.jpg"><span>PREESCOLAR</span></div>
+  </div>
+</section>
+
+<section class="main">
+
+  <!-- TOUR -->
+  <div class="tourBox">
+    <div class="tourIcon">🏫</div>
+    <h2>Agenda tu visita</h2>
+    <p>
+      Te invitamos a conocer nuestras instalaciones, resolver tus dudas
+      y descubrir por qué somos la mejor opción para la educación de tu hijo(a).
+    </p>
+    <a class="tourBtn"
+       href="https://wa.me/529611237595?text=Hola%2C%20quiero%20agendar%20una%20visita%20guiada%20al%20Colegio%20de%20Cervantes."
+       target="_blank">
+       Agendar tour por WhatsApp
+    </a>
+  </div>
+
+  <!-- PREESCOLAR -->
+  <div class="card">
+    <h2>PREESCOLAR</h2>
+    <div class="badge">CICLO 2026–2027 · PREESCOLAR</div>
+
+    <ul>
+      <li>✔ Acta de nacimiento</li>
+      <li>✔ CURP</li>
+      <li>✔ Copia de credencial del tutor</li>
+      <li>✔ Cartilla de vacunación</li>
+    </ul>
+
+    <div class="prices">
+      <div class="price red">INSCRIPCIÓN $1,600</div>
+      <div class="price dark">COLEGIATURA $2,000</div>
     </div>
-    <div class="school-name">COLEGIO DE CERVANTES</div>
-    <div class="school-year">CICLO ESCOLAR 2026–2027</div>
-  </header>
 
-  <section class="flyers-strip" aria-label="Niveles">
-    <div class="thumbs">
-      <div class="thumb" onclick="selectLevel(0,this)">
-        <img src="flyer_maternal.jpg" alt="Flyer Maternal">
-        <span>MATERNAL</span>
-      </div>
-      <div class="thumb" onclick="selectLevel(1,this)">
-        <img src="flyer_preescolar.jpg" alt="Flyer Preescolar">
-        <span>PREESCOLAR</span>
-      </div>
-      <div class="thumb active" onclick="selectLevel(2,this)">
-        <img src="flyer_primaria.jpg" alt="Flyer Primaria">
-        <span>PRIMARIA</span>
-      </div>
-      <div class="thumb" onclick="selectLevel(3,this)">
-        <img src="flyer_secundaria.jpg" alt="Flyer Secundaria">
-        <span>SECUNDARIA</span>
-      </div>
-      <div class="thumb" onclick="selectLevel(4,this)">
-        <img src="flyer_preparatoria.jpg" alt="Flyer Preparatoria">
-        <span>PREPARATORIA</span>
-      </div>
-    </div>
-  </section>
+    <div class="schedule">🕘 8:45 A.M. – 1:00 P.M.</div>
 
-  <section class="main">
-    <!-- IZQUIERDA: visor -->
-    <div class="viewer">
-      <div class="viewer-header">
-        <span id="viewerTitle">PRIMARIA</span>
-        <small>2026–2027</small>
-      </div>
-      <img id="viewerImg" src="flyer_primaria.jpg" alt="Volante">
+    <div class="contact">
+      <a href="https://wa.me/529611237595" target="_blank">WhatsApp</a>
+      <div>📞 961 123 7595 | 961 153 0677</div>
     </div>
 
-    <!-- DERECHA: ficha tipo PREESCOLAR -->
-    <aside class="paper" aria-label="Información del nivel">
-      <div class="panel-title" id="infoTitle">PRIMARIA</div>
-      <span class="tape" id="infoTape">CICLO 2026–2027 • PRIMARIA</span>
-      <div class="subline">Requisitos · Costos · Horario</div>
+    <div class="address">
+      📍 Carretera Panamericana KM 13 #1320<br>
+      Chiapa de Corzo, Chiapas, MX<br>
+      Atención: L–V | 7:00 A.M. – 3:00 P.M.
+    </div>
+  </div>
 
-      <div class="grid">
-        <!-- requisitos -->
-        <div class="box">
-          <h3>REQUISITOS</h3>
-          <ul class="req" id="reqList"></ul>
-        </div>
+</section>
 
-        <!-- costos/horario -->
-        <div>
-          <div class="price" id="insc">
-            <div class="label">INSCRIPCIÓN</div>
-            <div class="amount">$1,600</div>
-          </div>
-
-          <div class="price dark" id="mens">
-            <div class="label">COLEGIATURA</div>
-            <div class="amount">$2,450</div>
-          </div>
-
-          <div class="schedule" id="hor">
-            7:45 A.M. a 2:00 P.M.
-          </div>
-        </div>
-      </div>
-
-      <!-- CONTACTO -->
-      <div class="contact">
-        <h3>Contacto</h3>
-        <a class="btn-wa" id="waBtn" href="https://wa.me/5219611237595" target="_blank" rel="noopener">
-          WhatsApp
-        </a>
-        <div class="phones">
-          📞 961 123 7595 &nbsp;|&nbsp; 961 153 0677
-        </div>
-      </div>
-
-      <!-- UBICACIÓN -->
-      <div class="location">
-        📍 CARRETERA PANAMERICANA KM 13 #1320<br>
-        CHIAPA DE CORZO, CHIAPAS, CHIS., MX
-        <small>Atención: Lunes a Viernes | 7:00 A.M. a 3:00 P.M.</small>
-      </div>
-    </aside>
-  </section>
-
-  <footer class="footer">© 2026 Colegio de Cervantes</footer>
-
-</div>
-
-<script>
-  // ===== DATOS (según flyers) =====
-  const CONTACT_PHONE_E164 = "5219611237595"; // WhatsApp principal
-  const WA_BASE = (msg) => `https://wa.me/${CONTACT_PHONE_E164}?text=${encodeURIComponent(msg)}`;
-
-  const levelData = [
-    {
-      title: "MATERNAL",
-      flyer: "flyer_maternal.jpg",
-      inscription: "$1,500",
-      monthly: "$2,000",
-      schedule: "8:45 A.M. a 1:00 P.M.",
-      requirements: [
-        "Acta de nacimiento",
-        "CURP",
-        "Copia de credencial del tutor",
-        "Cartilla de vacunación"
-      ],
-      waMessage: "Hola, vi el volante del Colegio de Cervantes y me interesa información sobre MATERNAL (ciclo 2026–2027). ¿Me apoyan con informes y cupo? Gracias."
-    },
-    {
-      title: "PREESCOLAR",
-      flyer: "flyer_preescolar.jpg",
-      inscription: "$1,600",
-      monthly: "$2,000",
-      schedule: "8:45 A.M. a 1:00 P.M.",
-      requirements: [
-        "Acta de nacimiento",
-        "CURP",
-        "Copia de credencial del tutor",
-        "Cartilla de vacunación"
-      ],
-      waMessage: "Hola, vi el volante del Colegio de Cervantes y me interesa información sobre PREESCOLAR (ciclo 2026–2027). ¿Me apoyan con informes y cupo? Gracias."
-    },
-    {
-      title: "PRIMARIA",
-      flyer: "flyer_primaria.jpg",
-      inscription: "$1,600",
-      monthly: "$2,450",
-      schedule: "7:45 A.M. a 2:00 P.M.",
-      requirements: [
-        "Acta de nacimiento",
-        "CURP",
-        "Credencial del tutor",
-        "Cartilla de vacunación"
-      ],
-      waMessage: "Hola, vi el volante del Colegio de Cervantes y me interesa información sobre PRIMARIA (ciclo 2026–2027). ¿Me apoyan con informes y cupo? Gracias."
-    },
-    {
-      title: "SECUNDARIA",
-      flyer: "flyer_secundaria.jpg",
-      inscription: "$1,600",
-      monthly: "$2,450",
-      schedule: "6:45 A.M. a 2:30 P.M.",
-      requirements: [
-        "Acta de nacimiento",
-        "CURP",
-        "Copia de credencial del tutor",
-        "Certificado de vacunación"
-      ],
-      waMessage: "Hola, vi el volante del Colegio de Cervantes y me interesa información sobre SECUNDARIA (ciclo 2026–2027). ¿Me apoyan con informes y cupo? Gracias."
-    },
-    {
-      title: "PREPARATORIA",
-      flyer: "flyer_preparatoria.jpg",
-      inscription: "$1,000",
-      monthly: "$2,450",
-      schedule: "6:45 A.M. a 2:30 P.M.",
-      requirements: [
-        "Acta de nacimiento",
-        "CURP",
-        "Copia de credencial del tutor",
-        "Certificado de vacunación"
-      ],
-      waMessage: "Hola, vi el volante del Colegio de Cervantes y me interesa información sobre PREPARATORIA (ciclo 2026–2027). ¿Me apoyan con informes y cupo? Gracias."
-    }
-  ];
-
-  let currentIndex = 2; // inicia en PRIMARIA
-  let timer = null;
-
-  function renderLevel(i){
-    const d = levelData[i];
-
-    // activar thumb
-    const thumbs = document.querySelectorAll(".thumb");
-    thumbs.forEach(t => t.classList.remove("active"));
-    thumbs[i].classList.add("active");
-
-    // visor
-    document.getElementById("viewerImg").src = d.flyer;
-    document.getElementById("viewerTitle").textContent = d.title;
-
-    // panel derecho
-    document.getElementById("infoTitle").textContent = d.title;
-    document.getElementById("infoTape").textContent = `CICLO 2026–2027 • ${d.title}`;
-
-    // requisitos
-    const req = document.getElementById("reqList");
-    req.innerHTML = d.requirements.map(x => `<li>${x}</li>`).join("");
-
-    // costos
-    document.getElementById("insc").innerHTML = `
-      <div class="label">INSCRIPCIÓN</div>
-      <div class="amount">${d.inscription}</div>
-    `;
-    document.getElementById("mens").innerHTML = `
-      <div class="label">COLEGIATURA</div>
-      <div class="amount">${d.monthly}</div>
-    `;
-
-    // horario
-    document.getElementById("hor").textContent = d.schedule;
-
-    // whatsapp (mensaje por nivel)
-    document.getElementById("waBtn").href = WA_BASE(d.waMessage);
-  }
-
-  function selectLevel(i, el){
-    currentIndex = i;
-    renderLevel(i);
-    restartCarousel();
-  }
-
-  function restartCarousel(){
-    if (timer) clearInterval(timer);
-    timer = setInterval(() => {
-      currentIndex = (currentIndex + 1) % levelData.length;
-      renderLevel(currentIndex);
-    }, 5000);
-  }
-
-  // seguridad: si falla una imagen del header, no mostrar “rota”
-  document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".logo-icon img").forEach(img => {
-      img.addEventListener("error", () => img.style.display = "none");
-    });
-    renderLevel(currentIndex);
-    restartCarousel();
-  });
-</script>
 </body>
 </html>
